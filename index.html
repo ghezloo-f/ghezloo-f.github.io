@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ghezloo.f</title>
+<meta name="description" content="Personal website of Farimah Ghezloo, Cellular and Molecular Biology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Vazirmatn:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="site"><noscript><p style="padding:24px">Please turn on JavaScript to view this site.</p></noscript></div>
+<script src="info.js"></script>
+<script>
+(function(){
+  var s=window.SITE||{};
+  function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function paras(t){return String(t||'').split(/\n\s*\n/).filter(function(p){return p.trim();}).map(function(p){return '<p dir="auto">'+esc(p.trim()).replace(/\n/g,'<br>')+'</p>';}).join('');}
+  function initials(n){var p=String(n||'').trim().split(/\s+/);return ((p[0]||'?')[0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase();}
+  function newsList(a){return '<ul class="news">'+a.map(function(n){return '<li><time>'+esc(n.date)+'</time><span dir="auto">'+esc(n.text)+'</span></li>';}).join('')+'</ul>';}
+  var news=s.news||[], pubs=s.pubs||[], cv=s.cv||[], ints=s.interests||[], links=s.links||[];
+  document.title=s.siteName||s.name||document.title;
+  var h='<header class="topbar gutter"><div class="topbar-in"><a class="brand" href="#home">'+esc(s.siteName||s.name)+'</a><nav class="nav">'+
+    '<a href="#home" data-nav="home">Home</a><a href="#about" data-nav="about">About</a><a href="#news" data-nav="news">News</a><a href="#publications" data-nav="publications">Publications</a></nav></div></header><main class="wrap gutter">';
+  h+='<section class="page" data-page="home"><div class="home">'+(s.photo?'<img class="avatar" src="'+esc(s.photo)+'" alt="'+esc(s.name)+'">':'<div class="avatar" aria-hidden="true">'+esc(initials(s.name))+'</div>');
+  h+='<div style="min-width:0"><h1 dir="auto">Hi, I’m '+esc(s.name)+'</h1>'+(s.role?'<p class="role" dir="auto">'+esc(s.role)+'</p>':'')+'<div class="prose">'+paras(s.bio)+'</div>';
+  if(links.length)h+='<ul class="linkrow">'+links.map(function(l){return '<li><a href="'+esc(l.url)+'" target="_blank" rel="noopener">'+esc(l.label)+'</a></li>';}).join('')+'</ul>';
+  if(s.email)h+='<div class="contact"><span>Email</span><a class="email" href="mailto:'+esc(s.email)+'">'+esc(s.email)+'</a></div>';
+  h+='</div></div>';
+  if(news.length)h+='<div class="latest"><div class="latest-h"><h3>Latest news</h3><a href="#news">All news</a></div>'+newsList(news.slice(0,3))+'</div>';
+  h+='</section><section class="page" data-page="about"><h2>About me</h2><div class="prose">'+paras(s.about)+'</div>';
+  if(ints.length)h+='<h3>Research interests</h3><ul class="tags">'+ints.map(function(i){return '<li dir="auto">'+esc(i)+'</li>';}).join('')+'</ul>';
+  if(cv.length)h+='<h3>Experience &amp; education</h3><ul class="cv">'+cv.map(function(c){return '<li><div class="when">'+esc(c.when)+'</div><div><strong dir="auto">'+esc(c.title)+'</strong>'+(c.place?'<p dir="auto">'+esc(c.place)+'</p>':'')+'</div></li>';}).join('')+'</ul>';
+  h+='</section><section class="page" data-page="news"><h2>News</h2>'+(news.length?newsList(news):'<p class="empty">No news yet.</p>')+'</section>';
+  h+='<section class="page" data-page="publications"><h2>Publications</h2>'+(pubs.length?'<ol class="pubs">'+pubs.map(function(p){return '<li><div class="yr">'+esc(p.year)+'</div><div><p class="pt" dir="auto">'+(p.url?'<a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.title)+'</a>':esc(p.title))+'</p>'+(p.authors?'<p class="pa" dir="auto">'+esc(p.authors)+'</p>':'')+(p.venue?'<p class="pv" dir="auto">'+esc(p.venue)+'</p>':'')+'</div></li>';}).join('')+'</ol>':'<p class="empty">Coming soon.</p>')+'</section>';
+  h+='</main><footer class="gutter">© '+new Date().getFullYear()+' '+esc(s.name)+'</footer>';
+  document.getElementById('site').innerHTML=h;
+  var PAGES=['home','about','news','publications'];
+  function route(){var p=location.hash.slice(1);if(PAGES.indexOf(p)<0)p='home';
+    document.querySelectorAll('[data-page]').forEach(function(e){e.hidden=e.getAttribute('data-page')!==p;});
+    document.querySelectorAll('[data-nav]').forEach(function(a){a.getAttribute('data-nav')===p?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current');});}
+  window.addEventListener('hashchange',function(){route();scrollTo(0,0);});route();
+})();
+</script>
+</body>
+</html>
