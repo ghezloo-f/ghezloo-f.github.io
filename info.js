@@ -4,7 +4,7 @@
 // ============================================================
 
 window.SITE = {
-  siteName: "Farimag Ghezloo",                 // shown in the top bar and browser tab
+  siteName: "Farimah Ghezloo",                 // shown in the top bar and browser tab
   name: "Farimah Ghezloo",
   role: "B.S. in Cellular and Molecular Biology",
   photo: "photo.jpg",                    // to change it, upload a new photo.jpg to the repo
