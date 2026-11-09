@@ -7,7 +7,7 @@ window.SITE = {
   siteName: "ghezloo.f",                 // shown in the top bar and browser tab
   name: "Farimah Ghezloo",
   role: "B.S. in Cellular and Molecular Biology",
-  photo: "",                             // upload a photo to the repo, then write its name, e.g. "photo.jpg"
+  photo: "photo.jpg",                    // to change it, upload a new photo.jpg to the repo
   email: "farimah.ghezloo@gmail.com",
 
   // Short bio on the Home page. Use \n\n to start a new paragraph.
@@ -20,8 +20,9 @@ window.SITE = {
 
   links: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/farimah-ghezloo-855497392" },
-    // { label: "Google Scholar", url: "https://scholar.google.com/citations?user=..." },
-    // { label: "CV (PDF)",       url: "cv.pdf" },
+    { label: "GitHub",   url: "https://github.com/ghezloo-f" },
+    { label: "CV (PDF)", url: "cv.pdf" },       // needs a file named cv.pdf in the repo
+    // { label: "Google Scholar", url: "https://scholar.google.com/citations?user=..." },  // add your own profile link when you have one
   ],
 
   // Experience & education (About page), newest first.
